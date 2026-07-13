@@ -4,9 +4,9 @@ import { Image, Text, useScroll, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 const IMAGES = [
-  "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?q=80&w=2115&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1610411135515-5eec83bb6d6e?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2069&auto=format&fit=crop"
+  "./images/car1.jpg",
+  "./images/car2.jpg",
+  "./images/car3.jpg"
 ];
 
 export function GalleryItems() {
