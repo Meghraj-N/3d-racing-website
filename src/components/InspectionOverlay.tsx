@@ -11,7 +11,7 @@ interface InspectionOverlayProps {
 }
 
 const PART_DATA: Record<string, any> = {
-  'V8 Hybrid Powertrain': {
+  'engine': {
     title: 'V8 Hybrid Powertrain',
     description: 'A masterpiece of modern engineering combining a high-revving 4.0L twin-turbo V8 with dual electric motors on the front axle for instantaneous torque delivery.',
     stats: {
@@ -21,7 +21,7 @@ const PART_DATA: Record<string, any> = {
     },
     designerNote: 'We focused on lowering the center of gravity while maximizing cooling efficiency. The hybrid system seamlessly fills torque gaps during gear shifts.'
   },
-  'Performance Wheels & Brakes': {
+  'rims': {
     title: 'Aerodynamic Wheels & Carbon Ceramic Brakes',
     description: 'Forged magnesium alloy wheels paired with 16-inch carbon ceramic rotors and 6-piston monoblock calipers.',
     stats: {
@@ -31,7 +31,7 @@ const PART_DATA: Record<string, any> = {
     },
     designerNote: 'The wheel spoke design acts as an active aerodynamic extractor, pulling turbulent air out from the wheel wells to reduce drag.'
   },
-  'Body & Aerodynamics': {
+  'aero': {
     title: 'Active Aero Carbon Monocoque',
     description: 'Full carbon fiber chassis integrated with active aerodynamic flaps that deploy under heavy braking and cornering.',
     stats: {

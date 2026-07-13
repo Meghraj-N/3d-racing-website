@@ -1,50 +1,104 @@
 import { useState } from 'react';
-import CarCanvas from './components/CarCanvas';
+import { ThemeProvider } from '@/components/theme-provider';
+import { CarCanvas } from './components/CarCanvas';
 import InspectionOverlay from './components/InspectionOverlay';
+import { GarageMenu } from './components/GarageMenu';
+import { TuningShop } from './components/TuningShop';
+import { CARS, type TuningPart } from './data/cars';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
-  const [selectedPart, setSelectedPart] = useState<string | null>(null);
+  const [activeMode, setActiveMode] = useState<'garage' | 'tuning'>('garage');
+  const [selectedCarId, setSelectedCarId] = useState<string>(CARS[0].id);
+  const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
+  
+  const selectedCar = CARS.find(c => c.id === selectedCarId)!;
+
+  // Track applied parts per car. In a real app this might be in context or a larger state object.
+  const [carConfigs, setCarConfigs] = useState<Record<string, Record<string, TuningPart>>>({});
+
+  const appliedParts = carConfigs[selectedCarId] || {
+    color: selectedCar.availableColors[0],
+    spoiler: selectedCar.availableSpoilers[0],
+    rims: selectedCar.availableRims[0],
+  };
+
+  const handleApplyPart = (type: string, part: TuningPart) => {
+    setCarConfigs(prev => ({
+      ...prev,
+      [selectedCarId]: {
+        ...(prev[selectedCarId] || appliedParts),
+        [type]: part
+      }
+    }));
+  };
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-background relative font-body text-foreground">
-      
-      {/* Header Overlay */}
-      <header className="absolute top-0 left-0 w-full p-6 z-10 pointer-events-none flex justify-between items-start">
-        <div>
-          <h1 className="text-4xl font-display font-bold uppercase tracking-tighter text-primary">
-            Velocity<span className="text-foreground">X</span>
-          </h1>
-          <p className="text-muted-foreground uppercase tracking-widest text-xs mt-1 font-bold">
-            Interactive 3D Configuration
-          </p>
-        </div>
-        <div className="text-right hidden sm:block">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Status</p>
-          <div className="flex items-center gap-2 text-primary font-bold text-sm tracking-wider uppercase">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            System Online
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className="w-full h-screen bg-slate-950 overflow-hidden font-barlow relative">
+        {/* Header */}
+        <header className="absolute top-0 left-0 w-full p-8 flex justify-between items-start z-10 pointer-events-none">
+          <div>
+            <h1 className="text-4xl font-bold uppercase italic text-red-600 tracking-tighter">Velocity<span className="text-white">X</span></h1>
+            <p className="text-slate-400 text-xs tracking-[0.2em] font-semibold mt-1">INTERACTIVE 3D GARAGE</p>
           </div>
+          <div className="flex flex-col items-end">
+            <span className="text-slate-500 text-xs tracking-widest font-bold">STATUS</span>
+            <div className="flex items-center gap-2 mt-1">
+              <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+              <span className="text-red-500 text-xs font-bold tracking-widest">SYSTEM ONLINE</span>
+            </div>
+          </div>
+        </header>
+
+        {/* 3D Canvas Layer */}
+        <div className="absolute inset-0 z-0">
+          <CarCanvas 
+            activeMode={activeMode} 
+            selectedCar={selectedCar} 
+            appliedParts={appliedParts}
+            onHotspotClick={setActiveHotspot} 
+          />
         </div>
-      </header>
 
-      {/* Main 3D Canvas area */}
-      <main className="w-full h-full cursor-crosshair">
-        <CarCanvas onSelectPart={setSelectedPart} />
-      </main>
+        {/* UI Layer */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <AnimatePresence>
+            {activeMode === 'garage' && (
+              <GarageMenu 
+                selectedCarId={selectedCarId}
+                onSelectCar={setSelectedCarId}
+                onEnterTuning={() => {
+                  setActiveMode('tuning');
+                  setActiveHotspot(null);
+                }}
+              />
+            )}
+          </AnimatePresence>
 
-      {/* Detail Overlay when a part is clicked */}
-      <InspectionOverlay 
-        selectedPart={selectedPart} 
-        onClose={() => setSelectedPart(null)} 
-      />
+          <AnimatePresence>
+            {activeMode === 'tuning' && (
+              <TuningShop 
+                selectedCarId={selectedCarId}
+                onExitTuning={() => {
+                  setActiveMode('garage');
+                  setActiveHotspot(null);
+                }}
+                appliedParts={appliedParts}
+                onApplyPart={handleApplyPart}
+              />
+            )}
+          </AnimatePresence>
 
-      {/* Footer Instructions */}
-      <footer className="absolute bottom-6 left-0 w-full pointer-events-none z-10 text-center">
-        <p className="text-xs text-muted-foreground/60 uppercase tracking-[0.2em]">
-          Drag to rotate • Pinch to zoom • Click red markers to inspect
-        </p>
-      </footer>
-    </div>
+          {/* Inspection Overlay */}
+          <AnimatePresence>
+            {activeHotspot && activeMode === 'tuning' && (
+              <InspectionOverlay selectedPart={activeHotspot} onClose={() => setActiveHotspot(null)} />
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </ThemeProvider>
   );
 }
 
