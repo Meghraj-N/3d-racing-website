@@ -30,7 +30,7 @@ export function GalleryItems() {
         <Text
           position={[0, 0, 0]}
           fontSize={0.8}
-          font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff"
+          
           color="#ffffff"
           anchorX="center"
           anchorY="middle"
@@ -41,7 +41,7 @@ export function GalleryItems() {
         <Text
           position={[0, -0.8, 0]}
           fontSize={0.3}
-          font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff"
+          
           color="#DC2626"
           anchorX="center"
           anchorY="middle"
@@ -65,7 +65,7 @@ export function GalleryItems() {
         maxWidth={3}
         lineHeight={1.5}
         color="#a1a1aa"
-        font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff"
+        
       >
         Uncompromising power and elegant design perfectly intertwined in the ultimate driving machine.
       </Text>
@@ -80,7 +80,7 @@ export function GalleryItems() {
         position={[-2, 1, -13]}
         fontSize={0.6}
         color="#ffffff"
-        font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff"
+        
       >
         AERODYNAMICS
       </Text>
@@ -89,7 +89,7 @@ export function GalleryItems() {
         fontSize={0.3}
         maxWidth={3}
         color="#3B82F6"
-        font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff"
+        
       >
         M Carbon Roof.
         Active Air Intakes.
@@ -98,19 +98,19 @@ export function GalleryItems() {
 
       {/* Specs Text Floating - Page 4 */}
       <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
-        <Text position={[0, 1.5, -20]} fontSize={1.2} color="#DC2626" font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff">
+        <Text position={[0, 1.5, -20]} fontSize={1.2} color="#DC2626" >
           617 HP
         </Text>
-        <Text position={[-3, -1, -21]} fontSize={0.8} color="#ffffff" font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff">
+        <Text position={[-3, -1, -21]} fontSize={0.8} color="#ffffff" >
           3.0s
         </Text>
-        <Text position={[-3, -1.8, -21]} fontSize={0.3} color="#a1a1aa" font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff">
+        <Text position={[-3, -1.8, -21]} fontSize={0.3} color="#a1a1aa" >
           0-60 MPH
         </Text>
-        <Text position={[3, -0.5, -22]} fontSize={0.8} color="#ffffff" font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff">
+        <Text position={[3, -0.5, -22]} fontSize={0.8} color="#ffffff" >
           190 MPH
         </Text>
-        <Text position={[3, -1.3, -22]} fontSize={0.3} color="#a1a1aa" font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff">
+        <Text position={[3, -1.3, -22]} fontSize={0.3} color="#a1a1aa" >
           TOP SPEED
         </Text>
       </Float>
@@ -126,7 +126,7 @@ export function GalleryItems() {
         fontSize={0.4}
         color="#ffffff"
         letterSpacing={0.1}
-        font="https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3t-4s51os.woff"
+        
       >
         MOTORSPORT LUXURY
       </Text>

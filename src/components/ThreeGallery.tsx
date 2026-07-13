@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { ScrollControls, Environment, Float, Sparkles, ContactShadows } from '@react-three/drei';
+import { ScrollControls, ContactShadows, Html } from '@react-three/drei';
 import { GalleryItems } from './GalleryItems';
 import { Suspense } from 'react';
 
@@ -20,14 +20,13 @@ export function ThreeGallery() {
         <spotLight position={[10, 5, 5]} intensity={2} penumbra={0.5} color="#3B82F6" />
         <spotLight position={[-10, -5, -5]} intensity={1} penumbra={1} color="#ffffff" />
         
-        <Environment preset="night" />
-
-        {/* Ambient Particles */}
-        <Float speed={1} rotationIntensity={0.5} floatIntensity={0.5}>
-          <Sparkles count={300} scale={20} size={2} speed={0.4} opacity={0.2} color="#ffffff" />
-        </Float>
-
-        <Suspense fallback={null}>
+        <Suspense fallback={
+          <Html center>
+            <div className="text-white text-xl font-bold animate-pulse whitespace-nowrap">
+              Loading 3D Experience...
+            </div>
+          </Html>
+        }>
           <ScrollControls pages={5} damping={0.2}>
             <GalleryItems />
           </ScrollControls>

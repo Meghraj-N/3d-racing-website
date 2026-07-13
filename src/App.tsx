@@ -2,9 +2,12 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { ThreeGallery } from './components/ThreeGallery';
 import { motion } from 'framer-motion';
 
+import { ErrorBoundary } from './components/ErrorBoundary';
+
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ErrorBoundary>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="w-full h-screen bg-[#050505] text-white overflow-hidden font-barlow selection:bg-red-500 selection:text-white">
         
         {/* Navigation Bar (HTML Overlay) */}
@@ -42,6 +45,7 @@ function App() {
 
       </div>
     </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 

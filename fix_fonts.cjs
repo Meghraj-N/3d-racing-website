@@ -1,0 +1,1 @@
+const fs = require('fs'); const file = 'src/components/GalleryItems.tsx'; let content = fs.readFileSync(file, 'utf8'); content = content.replace(/font="https:\/\/fonts.gstatic.com[^"]+"/g, ''); fs.writeFileSync(file, content);
