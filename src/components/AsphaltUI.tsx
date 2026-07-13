@@ -65,8 +65,8 @@ export function AsphaltUI({ currentColor, onColorChange }: AsphaltUIProps) {
         className="absolute top-24 left-8 max-w-sm"
       >
         <div className="text-cyan-400 font-bold tracking-[0.2em] text-sm mb-1 uppercase drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">S Class</div>
-        <h1 className="text-5xl font-black text-white italic tracking-tighter drop-shadow-lg mb-2">PORSCHE 911</h1>
-        <h2 className="text-2xl font-bold text-gray-300 italic tracking-tight drop-shadow-md">CARRERA 4S</h2>
+        <h1 className="text-5xl font-black text-white italic tracking-tighter drop-shadow-lg mb-2">FERRARI</h1>
+        <h2 className="text-2xl font-bold text-gray-300 italic tracking-tight drop-shadow-md">458 ITALIA</h2>
       </motion.div>
 
       {/* Stats Panel */}
